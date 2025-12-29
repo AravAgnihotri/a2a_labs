@@ -25,24 +25,25 @@ export default function Home() {
 
         {/* Hero content */}
         <div className="relative z-10 text-center px-4 max-w-3xl">
-          {/* A2A Labs text */}
-          <p className="font-syne text-sm md:text-base text-foreground/70 tracking-wide mb-6">
-            A2A Labs
-          </p>
-          
-          {/* Logo */}
+          {/* Logo - Large */}
           <div className="mb-8 flex justify-center">
             <img 
               src="/images/logo.png" 
               alt="A2A Labs Logo" 
-              className="h-24 md:h-32 w-auto opacity-90"
+              className="h-48 md:h-64 w-auto opacity-90"
             />
           </div>
           
           {/* Main headline */}
-          <h1 className="font-syne font-bold text-5xl md:text-6xl tracking-tight mb-6 leading-tight">
-            Building an Agent to Agent Ecosystem
+          <h1 className="font-syne font-bold text-6xl md:text-7xl tracking-tight mb-4 leading-tight">
+            A2A Labs
           </h1>
+          
+          {/* Subheading */}
+          <h2 className="font-syne font-semibold text-2xl md:text-3xl text-foreground/70 tracking-tight mb-6">
+            Building an Agent to Agent Ecosystem
+          </h2>
+          
           <p className="font-inter text-base md:text-lg text-foreground/80 font-light">
             Autonomous systems coordinating without supervision.
           </p>
