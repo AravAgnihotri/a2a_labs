@@ -24,15 +24,27 @@ export default function Home() {
         <AgentNetworkAnimation />
 
         {/* Hero content */}
-        <div className="relative z-10 text-center px-4 max-w-4xl">
-          <h1 className="font-syne font-bold text-7xl md:text-8xl tracking-tight mb-6 leading-tight">
-            Agents. Talking to agents.
-          </h1>
-          <p className="font-inter text-lg md:text-xl text-foreground/80 font-light mb-8">
-            Autonomous systems coordinating without supervision.
-          </p>
-          <p className="font-syne text-sm md:text-base text-foreground/60 tracking-wide">
+        <div className="relative z-10 text-center px-4 max-w-3xl">
+          {/* A2A Labs text */}
+          <p className="font-syne text-sm md:text-base text-foreground/70 tracking-wide mb-6">
             A2A Labs
+          </p>
+          
+          {/* Logo */}
+          <div className="mb-8 flex justify-center">
+            <img 
+              src="/images/logo.png" 
+              alt="A2A Labs Logo" 
+              className="h-24 md:h-32 w-auto opacity-90"
+            />
+          </div>
+          
+          {/* Main headline */}
+          <h1 className="font-syne font-bold text-5xl md:text-6xl tracking-tight mb-6 leading-tight">
+            Building an Agent to Agent Ecosystem
+          </h1>
+          <p className="font-inter text-base md:text-lg text-foreground/80 font-light">
+            Autonomous systems coordinating without supervision.
           </p>
         </div>
       </section>
