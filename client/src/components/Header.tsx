@@ -10,11 +10,18 @@
 
 export default function Header() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
-      <div className="container flex items-center justify-between h-16">
+    <header 
+      className="fixed top-0 left-0 right-0 z-50 border-b border-border"
+      style={{ backgroundColor: '#000000' }}
+    >
+      <div className="container flex items-center justify-between h-16" style={{ backgroundColor: '#000000' }}>
         {/* Left: Logo */}
-        <div className="font-syne font-bold text-lg tracking-tight text-foreground">
-          A2A Labs
+        <div className="flex items-center">
+          <img 
+            src="/images/logo.png" 
+            alt="A2A Labs" 
+            className="h-12 w-auto"
+          />
         </div>
 
         {/* Right: Navigation */}
