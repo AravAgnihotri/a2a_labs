@@ -35,6 +35,8 @@ A2A Labs is a React/Vite web application for building an Agent to Agent Ecosyste
 - Vite config: `vite.config.ts`
 - TypeScript configs: `tsconfig.json`, `tsconfig.node.json`
 - Component config: `components.json`
+- **Authentication**: Firebase (Secrets configured)
 
 ## Recent Changes
 - 2026-01-06: Configured for Replit environment (port 5000, allowed all hosts)
+- 2026-01-06: Integrated Firebase secrets and verified server connectivity
