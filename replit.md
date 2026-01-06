@@ -36,7 +36,10 @@ A2A Labs is a React/Vite web application for building an Agent to Agent Ecosyste
 - TypeScript configs: `tsconfig.json`, `tsconfig.node.json`
 - Component config: `components.json`
 - **Authentication**: Firebase (Secrets configured)
+- **Authorized Domains**: 
+  - `043cde53-a472-455a-9196-08e3e7422fc7-00-2p68rghagb0ll.riker.replit.dev` (Current Replit Dev Domain)
 
 ## Recent Changes
 - 2026-01-06: Configured for Replit environment (port 5000, allowed all hosts)
 - 2026-01-06: Integrated Firebase secrets and verified server connectivity
+- 2026-01-06: Identified need for domain authorization in Firebase Console
