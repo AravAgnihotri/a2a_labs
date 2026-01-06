@@ -1,0 +1,271 @@
+Replit Prompt — Post-Sign-In Minimal Onboarding
+
+Build a post-sign-in onboarding flow for a modern agent-coordination platform.
+
+This onboarding starts only after the user has successfully signed in (account already created).
+
+The goal is to:
+
+Collect high-signal user context
+
+Establish identity and username
+
+Create a calm, premium first experience
+
+Gate access to the product until onboarding is complete
+
+Core Rules
+
+User signs in first (email + password)
+
+Immediately after sign-in, redirect into onboarding
+
+Users cannot access the dashboard or any product feature until onboarding is completed
+
+If onboarding is incomplete, always redirect the user back into onboarding on future logins
+
+Onboarding Experience
+
+Multi-step flow (8–9 steps)
+
+One question per screen
+
+Minimal copy
+
+Smooth transitions (fade or slide)
+
+Subtle progress indicator (thin bar or dots)
+
+Keyboard and mobile friendly
+
+No clutter. No marketing. No tutorials.
+
+Step 1 — Identity
+
+Title:
+Your identity
+
+Fields:
+
+Full name (required)
+
+Username (required)
+
+Must be unique
+
+Real-time availability check
+
+Lowercase, no spaces
+
+Letters, numbers, underscores only
+
+Cannot be changed later (quiet note)
+
+Profile picture (optional)
+
+Upload + preview
+
+Square crop
+
+Disable continue until valid.
+
+Step 2 — Role
+
+Title:
+Which best describes you?
+
+Single select:
+
+Founder
+
+Developer
+
+Operator
+
+Researcher
+
+Student
+
+Other
+
+Stored for personalization.
+
+Step 3 — Team Size
+
+Title:
+Team size
+
+Single select:
+
+Just me
+
+2–5
+
+6–20
+
+21–100
+
+100+
+
+Step 4 — Intent
+
+Title:
+What are you here to build?
+
+Multi-select (max 3):
+
+Personal agents
+
+Internal tools
+
+Research workflows
+
+Automation
+
+Agent coordination
+
+Experimentation
+
+Other (text input)
+
+At least one required.
+
+Step 5 — Urgency
+
+Title:
+How soon do you want this working?
+
+Single select:
+
+Just exploring
+
+This month
+
+This week
+
+Immediately
+
+Step 6 — Technical Comfort
+
+Title:
+Technical comfort
+
+Single select:
+
+Non-technical
+
+Some technical
+
+Developer
+
+Advanced systems
+
+Used internally to tune defaults.
+
+Step 7 — Discovery
+
+Title:
+How did you hear about us?
+
+Single select:
+
+Twitter / X
+
+LinkedIn
+
+Referral
+
+Community
+
+Article
+
+Event
+
+Other
+
+Required.
+
+Step 8 — Priorities
+
+Title:
+What matters most to you?
+
+Pick one:
+
+Reliability
+
+Speed
+
+Control
+
+Transparency
+
+Flexibility
+
+Step 9 — Review
+
+Title:
+Review
+
+Show a clean summary of all answers
+
+Allow inline edits
+
+Final “Finish setup” action
+
+On submit:
+
+Persist all data to the user profile
+
+Mark onboarding as complete
+
+Redirect user to the main dashboard
+
+UX & Design Requirements
+
+Minimalist layout
+
+Neutral colors
+
+Generous spacing
+
+No icons unless necessary
+
+No emojis
+
+Subtle animations only
+
+Disabled actions until valid input
+
+No modals
+
+This should feel closer to Linear, Stripe, or Vercel than a consumer app.
+
+Data & Logic Requirements
+
+All onboarding answers stored on the user profile
+
+Username uniqueness enforced at database level
+
+Handle race conditions correctly
+
+Onboarding completion flag checked on every login
+
+Explicit Non-Goals
+
+No pricing
+
+No upsells
+
+No tutorials
+
+No feature explanations
+
+No dashboard elements during onboarding
+
+Final Instruction
+
+This onboarding happens after sign-in, not before.
+It is designed for clarity, trust, and long-term product personalization.
+
+Treat this as a production-grade system, not a demo.
