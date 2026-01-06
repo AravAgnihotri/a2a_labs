@@ -25,12 +25,12 @@ const sampleTestimonials: Testimonial[] = [
   },
 ];
 
-const SignIn = () => {
-  const { login, loginWithGoogle } = useAuth();
+const SignUp = () => {
+  const { signup, loginWithGoogle } = useAuth();
   const [, setLocation] = useLocation();
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsLoading(true);
     
@@ -39,12 +39,12 @@ const SignIn = () => {
     const password = formData.get('password') as string;
     
     try {
-      await login(email, password);
-      toast.success("Welcome back to A2A Labs!");
-      setLocation('/'); // Redirect to home after successful login
+      await signup(email, password);
+      toast.success("Account created successfully!");
+      setLocation('/onboarding');
     } catch (error: any) {
-      console.error('Login failed:', error);
-      toast.error(error.message || 'Login failed. Please check your credentials.');
+      console.error('Signup failed:', error);
+      toast.error(error.message || 'Signup failed. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -55,7 +55,7 @@ const SignIn = () => {
     try {
       await loginWithGoogle();
       toast.success("Welcome to A2A Labs!");
-      setLocation('/');
+      setLocation('/onboarding');
     } catch (error: any) {
       console.error('Google sign-in failed:', error);
       toast.error(error.message || 'Google sign-in failed. Please try again.');
@@ -63,30 +63,21 @@ const SignIn = () => {
       setIsLoading(false);
     }
   };
-  
-  const handleResetPassword = () => {
-    toast.info("Password reset functionality coming soon!");
-  }
-
-  const handleCreateAccount = () => {
-    setLocation('/signup');
-  }
 
   return (
     <div className="bg-background text-foreground">
       <SignInPage
-        title={<span className="font-light text-foreground tracking-tighter">Welcome back to A2A Labs</span>}
-        description="Access your account and continue building agent systems"
+        title={<span className="font-light text-foreground tracking-tighter">Create your A2A Labs account</span>}
+        description="Join the agent-coordination platform for modern teams"
         heroImageSrc="https://images.unsplash.com/photo-1642615835477-d303d7dc9ee9?w=2160&q=80"
         testimonials={sampleTestimonials}
-        onSignIn={handleSignIn}
+        onSignIn={handleSignUp} // Reusing the same form for signup
         onGoogleSignIn={handleGoogleSignIn}
-        onResetPassword={handleResetPassword}
-        onCreateAccount={handleCreateAccount}
+        onCreateAccount={() => setLocation('/signin')}
+        isSignUp={true} // We'll need to add this prop to the UI component
       />
     </div>
   );
 };
 
-export default SignIn;
-
+export default SignUp;
