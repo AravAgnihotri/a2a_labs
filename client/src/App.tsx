@@ -7,6 +7,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import Home from "./pages/Home";
+import Landing from "./pages/Landing";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import { db } from "./lib/firebase";
@@ -32,7 +33,7 @@ function Router() {
 
   return (
     <Switch>
-      <Route path={"/"} component={Home} />
+      <Route path={"/"} component={currentUser ? Home : Landing} />
       <Route path={"/signin"} component={SignIn} />
       <Route path={"/signup"} component={SignUp} />
       <Route path={"/404"} component={NotFound} />
