@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff, ArrowLeft } from 'lucide-react';
+import { Link } from 'wouter';
 
 // --- HELPER COMPONENTS (ICONS) ---
 
@@ -71,7 +72,14 @@ export const SignInPage: React.FC<SignInPageProps> = ({
   return (
     <div className="h-[100dvh] flex flex-col md:flex-row font-geist w-[100dvw]">
       {/* Left column: sign-in form */}
-      <section className="flex-1 flex items-center justify-center p-8">
+      <section className="flex-1 flex items-center justify-center p-8 relative">
+        <Link 
+          href="/" 
+          className="absolute top-8 left-8 flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group"
+        >
+          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+          Back to landing
+        </Link>
         <div className="w-full max-w-md">
           <div className="flex flex-col gap-6">
             <h1 className="animate-element animate-delay-100 text-4xl md:text-5xl font-semibold leading-tight">{title}</h1>
