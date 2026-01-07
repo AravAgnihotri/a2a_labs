@@ -9,7 +9,6 @@ import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
-import Onboarding from "./pages/Onboarding";
 import { db } from "./lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
 
@@ -36,7 +35,6 @@ function Router() {
       <Route path={"/"} component={Home} />
       <Route path={"/signin"} component={SignIn} />
       <Route path={"/signup"} component={SignUp} />
-      <Route path={"/onboarding"} component={Onboarding} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
