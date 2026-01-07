@@ -26,29 +26,9 @@ const sampleTestimonials: Testimonial[] = [
 ];
 
 const SignUp = () => {
-  const { signup, loginWithGoogle } = useAuth();
+  const { loginWithGoogle } = useAuth();
   const [, setLocation] = useLocation();
   const [isLoading, setIsLoading] = useState(false);
-
-  const handleSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setIsLoading(true);
-    
-    const formData = new FormData(event.currentTarget);
-    const email = formData.get('email') as string;
-    const password = formData.get('password') as string;
-    
-    try {
-      await signup(email, password);
-      toast.success("Account created successfully!");
-      setLocation('/onboarding');
-    } catch (error: any) {
-      console.error('Signup failed:', error);
-      toast.error(error.message || 'Signup failed. Please try again.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   const handleGoogleSignIn = async () => {
     setIsLoading(true);
@@ -70,10 +50,8 @@ const SignUp = () => {
         title={<span className="font-light text-foreground tracking-tighter">Create your A2A Labs account</span>}
         description="Join the agent-coordination platform for modern teams"
         heroImageSrc="https://images.unsplash.com/photo-1642615835477-d303d7dc9ee9?w=2160&q=80"
-        onSignIn={handleSignUp} // Reusing the same form for signup
         onGoogleSignIn={handleGoogleSignIn}
-        onCreateAccount={() => setLocation('/signin')}
-        isSignUp={true} // We'll need to add this prop to the UI component
+        isSignUp={true}
       />
     </div>
   );

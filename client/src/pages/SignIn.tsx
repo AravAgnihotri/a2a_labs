@@ -26,35 +26,15 @@ const sampleTestimonials: Testimonial[] = [
 ];
 
 const SignIn = () => {
-  const { login, loginWithGoogle } = useAuth();
+  const { loginWithGoogle } = useAuth();
   const [, setLocation] = useLocation();
   const [isLoading, setIsLoading] = useState(false);
-
-  const handleSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setIsLoading(true);
-    
-    const formData = new FormData(event.currentTarget);
-    const email = formData.get('email') as string;
-    const password = formData.get('password') as string;
-    
-    try {
-      await login(email, password);
-      toast.success("Welcome back to A2A Labs!");
-      setLocation('/'); // Redirect to home after successful login
-    } catch (error: any) {
-      console.error('Login failed:', error);
-      toast.error(error.message || 'Login failed. Please check your credentials.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   const handleGoogleSignIn = async () => {
     setIsLoading(true);
     try {
       await loginWithGoogle();
-      toast.success("Welcome to A2A Labs!");
+      toast.success("Welcome back to A2A Labs!");
       setLocation('/');
     } catch (error: any) {
       console.error('Google sign-in failed:', error);
@@ -64,24 +44,13 @@ const SignIn = () => {
     }
   };
   
-  const handleResetPassword = () => {
-    toast.info("Password reset functionality coming soon!");
-  }
-
-  const handleCreateAccount = () => {
-    setLocation('/signup');
-  }
-
   return (
     <div className="bg-background text-foreground">
       <SignInPage
         title={<span className="font-light text-foreground tracking-tighter">Welcome back to A2A Labs</span>}
         description="Access your account and continue building agent systems"
         heroImageSrc="https://images.unsplash.com/photo-1642615835477-d303d7dc9ee9?w=2160&q=80"
-        onSignIn={handleSignIn}
         onGoogleSignIn={handleGoogleSignIn}
-        onResetPassword={handleResetPassword}
-        onCreateAccount={handleCreateAccount}
       />
     </div>
   );

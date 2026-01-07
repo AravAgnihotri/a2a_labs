@@ -21,11 +21,8 @@ import { auth, isFirebaseConfigured } from '@/lib/firebase';
 interface AuthContextType {
   currentUser: User | null;
   loading: boolean;
-  signup: (email: string, password: string, displayName?: string) => Promise<void>;
-  login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   loginWithGoogle: () => Promise<void>;
-  resetPassword: (email: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -105,11 +102,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const value: AuthContextType = {
     currentUser,
     loading,
-    signup,
-    login,
     logout,
     loginWithGoogle,
-    resetPassword,
   };
 
   return (
