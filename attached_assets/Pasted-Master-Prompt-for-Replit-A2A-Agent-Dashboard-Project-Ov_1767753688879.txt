@@ -1,0 +1,502 @@
+Master Prompt for Replit: A2A Agent Dashboard
+Project Overview
+Build a comprehensive dashboard for an Agent-to-Agent (A2A) coordination platform. This is the control center where users manage their AI agents, visualize agent-to-agent interactions in real-time, and access a marketplace of pre-built agent templates.
+
+Core Requirements
+1. DASHBOARD HOME - Agent Management Interface
+Layout:
+
+Left sidebar: Navigation (Dashboard, My Agents, Marketplace, AI Builder, Settings)
+Main content area: Agent cards in a grid layout
+Top bar: Search, notifications, user profile
+
+Agent Cards Display:
+Each agent card should show:
+
+Agent name and icon/avatar
+Status indicator (● Active / ○ Paused / ⚠ Error)
+Key metrics today:
+
+Messages sent/received
+Tasks completed
+Last action timestamp
+
+
+Quick action buttons: [View Details] [Pause/Resume] [Settings] [Delete]
+
+Example card:
+┌─────────────────────────────────────┐
+│ 🤖 Job Application Agent            │
+│ Status: ● Active                    │
+│                                     │
+│ Today's Activity:                   │
+│ • 47 messages sent                  │
+│ • 12 jobs applied                   │
+│ • Last action: 5 min ago            │
+│                                     │
+│ [View Tree] [Pause] [Settings]      │
+└─────────────────────────────────────┘
+Features:
+
+Drag and drop to reorder agents
+Bulk actions (pause all, resume all)
+Filter by status, type, or tags
+Real-time updates (WebSocket or polling)
+
+
+2. TREE DIAGRAM VIEW (n8n-style visualization)
+CRITICAL FEATURE - This is the killer differentiator
+When user clicks "View Tree" on any agent, show a visual workflow diagram of agent-to-agent interactions.
+Layout:
+
+Full-screen modal or dedicated page
+Canvas area for the tree diagram
+Side panel: Message logs and details
+Top controls: [Pause] [Resume] [Retry Failed] [Export Logs]
+
+Tree Diagram Requirements:
+Visual Structure:
+[Your Agent]
+    ├──→ [LinkedIn Agent] ✓ Success
+    │        └── Found 47 job postings (2 min ago)
+    │
+    ├──→ [Web Scraper Agent] ✓ Success  
+    │        └── Scraped 47 pages (1 min ago)
+    │
+    ├──→ [Research Agent] ⏳ In Progress (32/47)
+    │        ├── Researching company culture
+    │        └── Estimated: 5 min remaining
+    │
+    └──→ [Email Agent] ⏸ Waiting
+             └── Ready to send applications
+Technical Implementation:
+
+Use React Flow library (https://reactflow.dev/) or similar
+Each node represents an agent
+Edges represent message flow between agents
+Color coding:
+
+Green: Success/completed
+Blue: In progress
+Gray: Waiting/queued
+Red: Failed/error
+Yellow: Retrying
+
+
+
+Node Details:
+
+Agent name and icon
+Status icon (✓ ⏳ ⏸ ❌)
+Last message timestamp
+Click to expand: show full message history
+Hover: show tooltip with quick stats
+
+Interactive Features:
+
+Click node to see message details in side panel
+Click edge to see the specific messages passed
+Real-time updates (nodes change color as status updates)
+Pan and zoom the canvas
+Auto-layout (hierarchical tree structure)
+Minimap for navigation
+
+Message Log Side Panel:
+┌─────────────────────────────────────┐
+│ Message History                     │
+├─────────────────────────────────────┤
+│ 14:32 Your Agent → LinkedIn Agent   │
+│ "Find software engineering jobs"    │
+│                                     │
+│ 14:33 LinkedIn Agent → Your Agent   │
+│ "Found 47 matching positions"       │
+│ [View Full Response]                │
+│                                     │
+│ 14:34 Your Agent → Scraper Agent    │
+│ "Extract details from these URLs"   │
+│ [47 URLs passed]                    │
+│                                     │
+│ 14:35 Scraper Agent → Your Agent    │
+│ "Extracted job descriptions"        │
+│ [View Data]                         │
+└─────────────────────────────────────┘
+
+3. AGENT MARKETPLACE
+Layout:
+
+Grid of agent template cards
+Left sidebar: Filters (category, price, rating)
+Search bar with autocomplete
+Sort options: Popular, Recent, Top Rated, Price
+
+Template Card:
+┌─────────────────────────────────────┐
+│ 📦 E-commerce Inventory Manager     │
+│ by @shopify_dev                     │
+│                                     │
+│ ⭐⭐⭐⭐⭐ (2,431 reviews)            │
+│                                     │
+│ Auto-reorders stock when low,       │
+│ monitors prices, sends alerts       │
+│                                     │
+│ $29/month                           │
+│                                     │
+│ [Preview] [Buy Now] [Learn More]    │
+└─────────────────────────────────────┘
+Categories:
+
+E-commerce & Inventory
+Customer Support
+Sales & Marketing
+Data & Analytics
+Productivity & Automation
+Research & Intelligence
+Communication
+Development & DevOps
+
+Features:
+
+Preview modal: Shows what the agent does, sample tree diagram
+One-click purchase/deployment
+Reviews and ratings system
+"Built with" tags (shows which utility agents it uses)
+Creator profiles (click username to see all their agents)
+
+Purchase Flow:
+
+Click "Buy Now"
+Payment modal (Stripe integration)
+Agent automatically added to user's dashboard
+Setup wizard (connect API keys, configure settings)
+Agent is ready to use
+
+
+4. AI BUILDER (Cursor-style Agent Generator)
+Layout:
+
+Split screen:
+
+Left: Chat interface with AI
+Right: Live code preview / generated agent config
+
+
+Bottom: Deploy button
+
+Chat Interface:
+┌─────────────────────────────────────┐
+│ 🤖 AI Agent Builder                 │
+│ Model: [GPT-4 ▼] [Claude ▼] [Gemini ▼] │
+├─────────────────────────────────────┤
+│                                     │
+│ You: Build me an agent that         │
+│      monitors Hacker News and       │
+│      emails me the top posts daily  │
+│                                     │
+│ AI: I'll create a news monitoring   │
+│     agent with these capabilities:  │
+│                                     │
+│     ✓ Web scraping (Hacker News)    │
+│     ✓ Content filtering (top posts) │
+│     ✓ Email notifications           │
+│     ✓ Daily schedule (9 AM)         │
+│                                     │
+│     Using agents:                   │
+│     • Web Scraper Agent             │
+│     • Email Agent                   │
+│                                     │
+│     [View Generated Config]         │
+│     [Deploy Agent]                  │
+│                                     │
+│ [Type your message...]              │
+└─────────────────────────────────────┘
+Right Panel - Generated Config:
+json{
+  "name": "HN Monitor Agent",
+  "description": "Monitors Hacker News for top posts",
+  "schedule": "0 9 * * *",
+  "workflow": [
+    {
+      "agent": "web_scraper",
+      "action": "scrape",
+      "params": {
+        "url": "https://news.ycombinator.com",
+        "selector": ".storylink"
+      }
+    },
+    {
+      "agent": "email",
+      "action": "send",
+      "params": {
+        "to": "user@example.com",
+        "subject": "Top HN Posts",
+        "body": "{{scraped_content}}"
+      }
+    }
+  ]
+}
+Features:
+
+Multi-model support (dropdown to switch between GPT-4, Claude, Gemini)
+Iterative refinement: "Add feature X", "Change behavior Y"
+Test in sandbox before deploying
+Shows estimated costs (API calls, agent usage)
+Save as draft
+Export code (JSON/YAML config)
+
+
+5. SETTINGS & CONFIGURATION
+User Settings:
+
+Profile (name, email, avatar)
+API Keys (for connecting to external services)
+Notifications (email, in-app, webhooks)
+Billing (payment methods, usage, invoices)
+
+Agent Settings (per agent):
+
+Basic info (name, description, icon)
+Permissions (which agents can it talk to)
+Rate limits (max messages per hour/day)
+Cost limits (max spend per day)
+Logging level (all messages, errors only, none)
+Webhooks (notify external services on events)
+
+Platform Settings:
+
+Connected services (Google, Shopify, LinkedIn, etc.)
+Utility agents configuration (enable/disable)
+Billing plan (Free, Pro, Enterprise)
+Usage metrics (total messages, storage, API calls)
+
+
+Technical Stack Requirements
+Frontend:
+
+React + TypeScript
+Tailwind CSS for styling
+React Flow for tree diagrams
+Recharts for analytics/metrics
+React Query for data fetching
+Zustand or Redux for state management
+
+Backend (API endpoints needed):
+
+GET /api/agents - List all user's agents
+POST /api/agents - Create new agent
+GET /api/agents/:id - Get agent details
+PUT /api/agents/:id - Update agent
+DELETE /api/agents/:id - Delete agent
+GET /api/agents/:id/tree - Get interaction tree
+GET /api/agents/:id/logs - Get message logs
+POST /api/agents/:id/pause - Pause agent
+POST /api/agents/:id/resume - Resume agent
+GET /api/marketplace/templates - List marketplace templates
+GET /api/marketplace/templates/:id - Get template details
+POST /api/marketplace/purchase - Purchase template
+POST /api/ai-builder/generate - Generate agent from natural language
+POST /api/ai-builder/refine - Refine existing agent
+
+Real-time Updates:
+
+WebSocket connection for live agent status
+Server-Sent Events for message logs
+Poll every 5s as fallback
+
+Authentication:
+
+JWT tokens
+Login/signup flow
+Password reset
+
+
+UI/UX Design Guidelines
+Color Scheme:
+
+Primary: Blue (#3B82F6)
+Success: Green (#10B981)
+Warning: Yellow (#F59E0B)
+Error: Red (#EF4444)
+Background: Dark gray (#1F2937) or light (#F9FAFB)
+Text: White on dark, gray on light
+
+Typography:
+
+Headers: Inter or SF Pro
+Body: System fonts
+Code: Fira Code or JetBrains Mono
+
+Component Style:
+
+Modern, clean, minimal
+Card-based layouts
+Smooth animations (transitions, hover effects)
+Responsive (mobile, tablet, desktop)
+Loading states (skeletons, spinners)
+Empty states ("No agents yet, create one!")
+Error states (retry buttons, helpful messages)
+
+Accessibility:
+
+ARIA labels on all interactive elements
+Keyboard navigation
+Focus states
+Color contrast (WCAG AA minimum)
+
+
+Sample Data for Development
+Create mock data for:
+3-5 Example Agents:
+
+Job Application Agent (applying to 47 jobs)
+Price Monitor Agent (tracking 15 products)
+Meeting Scheduler Agent (coordinating calendars)
+Content Research Agent (gathering articles)
+Customer Support Agent (answering tickets)
+
+Utility Agents (platform-provided):
+
+Web Scraper Agent
+Email Agent
+Calendar Agent
+Research Agent
+Notification Agent
+Data Parser Agent
+
+Marketplace Templates (10-15):
+
+Mix of free and paid
+Different categories
+Varying complexity
+Realistic descriptions and reviews
+
+Message Logs:
+
+20-50 sample messages per agent
+Mix of success/in-progress/failed states
+Realistic timestamps
+Sample data payloads
+
+
+Key Features Priority
+MUST HAVE (MVP):
+
+✅ Agent dashboard (list, cards, basic controls)
+✅ Tree diagram visualization (this is THE killer feature)
+✅ Message logs (side panel)
+✅ Agent pause/resume
+✅ Basic marketplace (browse, view templates)
+
+SHOULD HAVE (Phase 2):
+
+AI Builder (natural language → agent)
+Purchase flow (buy templates)
+Real-time updates (WebSocket)
+Settings page
+Analytics/metrics
+
+NICE TO HAVE (Phase 3):
+
+Multi-model support in AI Builder
+Advanced filters and search
+Team collaboration features
+Export/import agents
+Webhook integrations
+
+
+Performance Requirements
+
+Initial page load: < 2 seconds
+Tree diagram render: < 500ms for 50 nodes
+Real-time updates: < 100ms latency
+Search: < 200ms response time
+Mobile responsive: All features work on mobile
+
+
+Success Metrics to Display
+Dashboard Overview:
+
+Total agents created
+Messages sent today/this week
+Active agents
+Success rate (%)
+Cost today/this month
+
+Per-Agent Metrics:
+
+Uptime (%)
+Messages sent/received
+Average response time
+Success/failure rate
+Cost per action
+
+Marketplace Metrics:
+
+Template popularity (downloads)
+Rating distribution
+Revenue (if seller)
+
+
+Additional Notes
+Design Philosophy:
+
+Make agents VISIBLE (tree diagram is key)
+Make coordination TRANSPARENT (show all messages)
+Make management EASY (visual controls, not code)
+Make onboarding FAST (marketplace templates, AI builder)
+
+User Mental Model:
+
+Agents are like team members
+Dashboard is the team management tool
+Tree diagram shows who's talking to whom
+Marketplace is the hiring platform
+AI Builder is the training/onboarding system
+
+The Goal:
+Create a dashboard that makes users say "Wow, I can SEE my agents working together!" The tree diagram is the star of the show. Everything else supports it.
+
+Build Instructions for Replit
+
+Start with a Next.js + TypeScript template
+Install dependencies: react-flow-renderer, recharts, tailwindcss
+Create the folder structure:
+
+/components (agent cards, tree diagram, marketplace)
+/pages (dashboard, agent-detail, marketplace, ai-builder)
+/lib (API calls, utilities)
+/hooks (custom React hooks)
+/types (TypeScript interfaces)
+
+
+Build components in this order:
+
+AgentCard component
+Dashboard page (grid of cards)
+TreeDiagram component (React Flow)
+AgentDetailPage (includes tree diagram)
+Marketplace page
+AI Builder page
+
+
+Use mock data initially (JSON files)
+Add real-time updates last (WebSocket)
+
+Start with the tree diagram - that's the most important feature. Get that working perfectly before anything else.
+
+Final Checklist
+
+ Dashboard shows agent cards in grid
+ Click agent opens tree diagram view
+ Tree diagram shows agent-to-agent interactions
+ Real-time status updates (color changes)
+ Message log side panel works
+ Marketplace displays templates
+ Template cards are clickable
+ AI Builder has chat interface
+ Settings page exists
+ Mobile responsive
+ Dark mode support
+ Loading states everywhere
+ Error handling everywhere
+
+Remember: The tree diagram is the CORE innovation. Make it beautiful, intuitive, and real-time. That's what will make users say "I need this."Claude is AI and can make mistakes. Please double-check responses. Sonnet 4.5Claude is AI and can make mistakes. Please double-check responses.
