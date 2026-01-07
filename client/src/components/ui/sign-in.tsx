@@ -75,10 +75,10 @@ export const SignInPage: React.FC<SignInPageProps> = ({
       <section className="flex-1 flex items-center justify-center p-8 relative">
         <Link 
           href="/" 
-          className="absolute top-8 left-8 flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group"
+          className="absolute top-8 left-8 flex items-center justify-center w-10 h-10 rounded-full border border-border bg-background text-muted-foreground hover:text-foreground hover:bg-secondary transition-all group"
+          aria-label="Back to landing"
         >
-          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-          Back to landing
+          <ArrowLeft className="w-5 h-5 group-hover:-translate-x-0.5 transition-transform" />
         </Link>
         <div className="w-full max-w-md">
           <div className="flex flex-col gap-6">
