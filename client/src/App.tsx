@@ -20,38 +20,8 @@ function Router() {
 
   useEffect(() => {
     if (loading) return;
-
-    const checkOnboarding = async () => {
-      if (!currentUser?.uid) {
-        setIsCheckingOnboarding(false);
-        return;
-      }
-
-      try {
-        const docRef = doc(db, "users", currentUser.uid);
-        const docSnap = await getDoc(docRef);
-        
-        if (!docSnap.exists() || !docSnap.data()?.onboardingComplete) {
-          if (location !== "/onboarding") setLocation("/onboarding");
-          return;
-        }
-
-        if (location === "/onboarding") {
-          setLocation("/");
-        }
-      } catch (error: any) {
-        console.error("Error checking onboarding status:", error);
-        // Don't trap the user in a loading state on permission errors
-        if (error.code === 'permission-denied') {
-          setLocation("/onboarding");
-        }
-      } finally {
-        setIsCheckingOnboarding(false);
-      }
-    };
-
-    checkOnboarding();
-  }, [currentUser, loading, location, setLocation]);
+    setIsCheckingOnboarding(false);
+  }, [currentUser, loading]);
 
   if (loading || isCheckingOnboarding) {
     return (
