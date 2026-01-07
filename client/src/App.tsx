@@ -31,16 +31,12 @@ function Router() {
         const docRef = doc(db, "users", currentUser.uid);
         const docSnap = await getDoc(docRef);
         
-        if (!docSnap.exists()) {
+        if (!docSnap.exists() || !docSnap.data()?.onboardingComplete) {
           if (location !== "/onboarding") setLocation("/onboarding");
           return;
         }
 
-        const isCompleted = docSnap.data()?.onboardingComplete;
-        
-        if (!isCompleted && location !== "/onboarding") {
-          setLocation("/onboarding");
-        } else if (isCompleted && location === "/onboarding") {
+        if (location === "/onboarding") {
           setLocation("/");
         }
       } catch (error: any) {
