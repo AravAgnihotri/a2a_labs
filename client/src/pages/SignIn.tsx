@@ -78,7 +78,6 @@ const SignIn = () => {
         title={<span className="font-light text-foreground tracking-tighter">Welcome back to A2A Labs</span>}
         description="Access your account and continue building agent systems"
         heroImageSrc="https://images.unsplash.com/photo-1642615835477-d303d7dc9ee9?w=2160&q=80"
-        testimonials={sampleTestimonials}
         onSignIn={handleSignIn}
         onGoogleSignIn={handleGoogleSignIn}
         onResetPassword={handleResetPassword}

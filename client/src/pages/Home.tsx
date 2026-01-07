@@ -206,52 +206,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 3: SYSTEMS FOCUS */}
-      <section id="systems" className="w-full py-24 md:py-32 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            {/* Left: Animation */}
-            <div className="h-96 md:h-full min-h-96">
-              <SystemsAnimation />
-            </div>
-
-            {/* Right: Text */}
-            <div className="space-y-8">
-              <h2 className="font-syne font-bold text-4xl md:text-5xl tracking-tight">
-                Agent-to-agent systems require new primitives.
-              </h2>
-
-              <div className="space-y-6 text-lg md:text-xl text-foreground/80 font-inter font-light">
-                <p>We work on:</p>
-                <ul className="space-y-4">
-                  <li className="flex gap-4">
-                    <span className="text-accent flex-shrink-0">•</span>
-                    <span>communication protocols</span>
-                  </li>
-                  <li className="flex gap-4">
-                    <span className="text-accent flex-shrink-0">•</span>
-                    <span>memory sharing</span>
-                  </li>
-                  <li className="flex gap-4">
-                    <span className="text-accent flex-shrink-0">•</span>
-                    <span>delegation logic</span>
-                  </li>
-                  <li className="flex gap-4">
-                    <span className="text-accent flex-shrink-0">•</span>
-                    <span>emergent behavior</span>
-                  </li>
-                </ul>
-
-                <div className="pt-6 space-y-3">
-                  <p className="font-syne font-semibold text-base">Designed for scale.</p>
-                  <p className="font-syne font-semibold text-base">Designed for autonomy.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* SECTION 4: PHILOSOPHY */}
       <section id="research" className="w-full py-24 md:py-32 bg-background">
         <div className="container max-w-3xl mx-auto px-4">

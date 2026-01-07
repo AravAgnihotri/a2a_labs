@@ -70,7 +70,6 @@ const SignUp = () => {
         title={<span className="font-light text-foreground tracking-tighter">Create your A2A Labs account</span>}
         description="Join the agent-coordination platform for modern teams"
         heroImageSrc="https://images.unsplash.com/photo-1642615835477-d303d7dc9ee9?w=2160&q=80"
-        testimonials={sampleTestimonials}
         onSignIn={handleSignUp} // Reusing the same form for signup
         onGoogleSignIn={handleGoogleSignIn}
         onCreateAccount={() => setLocation('/signin')}
